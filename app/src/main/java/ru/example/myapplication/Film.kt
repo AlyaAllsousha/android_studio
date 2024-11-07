@@ -5,7 +5,8 @@ class Film (
     val year:Int,
     val director:String
 ){
+
     override fun toString(): String {
-        return "Film(title='$title', year=$year, director='$director')"
+        return "title='$title', year=$year, director='$director' \n"
     }
 }
