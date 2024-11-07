@@ -20,14 +20,28 @@ class CustomViewModel: ViewModel() {
 
 
     }
-    fun ArrayList<Film>.filterListYears( keyword:String):ArrayList<Film>{
+    fun ArrayList<Film>.filterListYears( keyword:String): ArrayList<Film>? {
         return this.filter{it ->
             val char = keyword[0]
-            if(char=='>'){
-                return@filter (it.year > (keyword.split(">")[1].toInt()))
+            if(char=='>') {
+                if (keyword.split(">")[1].length != 0) {
+                    return@filter (it.year > (keyword.split(">")[1].toInt()))
+                }
+                else{
+                    return ArrayList<Film>()
+                }
+            }
+            else if(char == '<'){
+                if (keyword.split("<")[1].length != 0) {
+                    return@filter (it.year < (keyword.split("<")[1].toInt()))
+                }
+                else{
+                    return ArrayList<Film>()
+                }
             }
             else{
-                return@filter (it.year < (keyword.split("<")[1].toInt()))
+                return ArrayList<Film>()
+
             }
         }  as ArrayList<Film>
     }
